@@ -68,13 +68,6 @@ public class ProgramHierarchy extends GraphicsProgram {
 	}
 	
 	
-	/*private GLine drawLine(double a, double b, double x, double y) { 
-		GLine line = new GLine ( (a + (RECT_WIDTH * 0.5)) , (b + RECT_HEIGHT), (x), (y));
-		
-		return line;
-	}
-	*/
-	
 	/*
 	 * draw labels by first creating a label at 0,0 to determine width and height, then uses the setLocation() method on GObject to
 	 * center the label in the rect by 1. finding the x coord and subtracting the rect width to the label width and dividing by two; 
