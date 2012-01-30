@@ -10,21 +10,23 @@ import java.awt.*;
 
 public class RobotFace extends GraphicsProgram {	
 
-	/** Eclipse suggested I add this */
+	/** Eclipse suggested I add this*/
 	private static final long serialVersionUID = 1L;
-	/**  */
+	
+	/**constants for dimensions of head*/
 	private static final double  HEAD_WIDTH = 200;
-	/**  */
 	private static final double  HEAD_HEIGHT = 375;
-	/** */
+	
+	/**constant for determining dimensions of eyes*/
 	private static final double  EYE_RADIUS = 20;
-	/** */
+	
+	/**constants for determining dimensions of mouth*/
 	private static final double MOUTH_WIDTH = 150;
-	/** */
 	private static final double MOUTH_HEIGHT = 50;
 	
+	
 
-	/**  */
+	/**draws and adds the the head, eyes and mouth to the canvas*/
 	public void run() {
 		
 		/**local variable in run() to contain head Ojbect so it can be referenced by eyes and mouth*/
@@ -62,7 +64,6 @@ public class RobotFace extends GraphicsProgram {
 					head.getY() + (head.getHeight() / 4) - EYE_RADIUS ));
 	}
 	
-
 	
 	
 	/**generates rectangles. returns rectangles with specified coordinates and colors*/
