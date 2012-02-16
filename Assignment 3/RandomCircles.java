@@ -25,7 +25,7 @@ public class RandomCircles extends GraphicsProgram {
 		 }
 	 }
 	 
-	 
+	 /* creates a ball filled in with a random color at a random x,y location on the canvas. */
 	 private GOval createBall() { 
 		  ball = new GOval(diam_ball, diam_ball); 
 		  ball.setFilled(true);
