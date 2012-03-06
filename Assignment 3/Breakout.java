@@ -165,7 +165,7 @@ public class Breakout extends GraphicsProgram {
 	}
 	
 /*
- * Draws Paddle 
+ * Draws Paddle and sets the color.
  */
 	private void drawPaddle() {
 		paddle = new GRect(100, (getHeight() - PADDLE_Y_OFFSET), PADDLE_WIDTH, PADDLE_HEIGHT); 
