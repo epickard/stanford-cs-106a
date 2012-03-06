@@ -1,10 +1,9 @@
 /*
  * File: Breakout.java
  * -------------------
- * Name:
- * Section Leader:
  * 
- * This file will eventually implement the game of Breakout.
+ * Implements the game of Breakout. Player has three turns to remove all the bricks at the top of the canvas by using a horizontally-movable
+ * paddle to hit a ball. When the ball comes in contact with a brick, the brick is removed.
  */
 
 import acm.graphics.*;
@@ -102,10 +101,8 @@ public class Breakout extends GraphicsProgram {
 				/** need to create local variable with results of drawMessage() so we can remove it after pause time */
 				GLabel continueGameLabel = drawMessage("You have " + (i - 1) + " more turn(s).", Color.BLUE, 2000);
 				remove(continueGameLabel);
-				
 			} else if (i > 1 && bricksRemaining == 0) {
 				drawMessage("Congratulations! You Win!", Color.BLUE, 0);
-				
 			} else if (i == 1 && bricksRemaining > 0) {
 				GLabel gameLostLabel = drawMessage("Sorry! You Lose. Please Try again!", Color.RED, 0);
 			}
@@ -123,28 +120,25 @@ public class Breakout extends GraphicsProgram {
 		/**This loop drives the rows */
 		for (int i = 0 ; i < NBRICKS_PER_ROW ; i++) {
 				
-				/**This loop drives the columns. It's also where I've placed the assignment of fill & color. */
+			/**This loop drives the columns. It's also where I've placed the assignment of fill & color. */
 			for (int j = NBRICK_ROWS; j > 0  ; j--) { 
-					
-					/**Width calc: get total width, subtract (# of bricks in row * (total width of those bricks plus the distance b/w bricks), 
-					* Then, to center, ADD the width of the BRICK_SEP value and divide by two. That's your x coord */
-					double x = (getWidth()  - (j * (BRICK_WIDTH + BRICK_SEP))) + (BRICK_SEP / 2);
+				/**Width calc: get total width, subtract (# of bricks in row * (total width of those bricks plus the distance b/w bricks), 
+				* Then, to center, ADD the width of the BRICK_SEP value and divide by two. That's your x coord */
+				double x = (getWidth()  - (j * (BRICK_WIDTH + BRICK_SEP))) + (BRICK_SEP / 2);
+
+				/**Height calc: defined brick offset from the top PLUS (# of bricks from bottom * total height of those bricks plus the 
+				* distance b/w bricks), that's your y coord */	
+				double y = BRICK_Y_OFFSET + (i * (BRICK_HEIGHT + BRICK_SEP)); 
 						
-					/**Height calc: defined brick offset from the top PLUS (# of bricks from bottom * total height of those bricks plus the 
-					 * distance b/w bricks), that's your y coord */	
-					double y = BRICK_Y_OFFSET + (i * (BRICK_HEIGHT + BRICK_SEP)); 
-						
-					GRect rect = new GRect (x, y, BRICK_WIDTH, BRICK_HEIGHT);
-					
-					rect.setFilled(true);
-					rect.setColor(assignColor());
-					rect.setFillColor(assignColor());
-					add(rect);
-					brickNum++;
-					bricksRemaining++;
-					
-					} 
-			}	
+				GRect rect = new GRect (x, y, BRICK_WIDTH, BRICK_HEIGHT);
+				rect.setFilled(true);
+				rect.setColor(assignColor());
+				rect.setFillColor(assignColor());
+				add(rect);
+				brickNum++;
+				bricksRemaining++;
+			} 
+		}	
 	}	
 	
 /*
@@ -155,20 +149,19 @@ public class Breakout extends GraphicsProgram {
 			* The number of bricks is incremented in drawBricks(), above. Bricks in final else{} would be arbitrarily BLACK. */
 		if (brickNum < (NBRICKS_PER_ROW * 2)) {
 			rcolor = Color.RED;
-		} else if (brickNum >= (NBRICKS_PER_ROW * 2 ) && brickNum < (NBRICKS_PER_ROW * 4)) {
-				rcolor = Color.ORANGE;
-			} else if (brickNum >= (NBRICKS_PER_ROW * 4) && brickNum < (NBRICKS_PER_ROW * 6)) {
-					rcolor = Color.YELLOW;
-				} else if (brickNum >= (NBRICKS_PER_ROW * 6) && brickNum < (NBRICKS_PER_ROW * 8)) {
-						rcolor = Color.GREEN;
-					} else if (brickNum >= (NBRICKS_PER_ROW * 8) && brickNum < (NBRICKS_PER_ROW * 10)) {
-							rcolor = Color.CYAN;
-						} else {
-							rcolor = Color.black;
-						}
+		} else if ( brickNum >= (NBRICKS_PER_ROW * 2 ) && brickNum < (NBRICKS_PER_ROW * 4) ) {
+			rcolor = Color.ORANGE;
+		} else if ( brickNum >= (NBRICKS_PER_ROW * 4) && brickNum < (NBRICKS_PER_ROW * 6) ) {
+			rcolor = Color.YELLOW;
+		} else if ( brickNum >= (NBRICKS_PER_ROW * 6) && brickNum < (NBRICKS_PER_ROW * 8) ) {
+			rcolor = Color.GREEN;
+		} else if ( brickNum >= (NBRICKS_PER_ROW * 8) && brickNum < (NBRICKS_PER_ROW * 10) ) {
+			rcolor = Color.CYAN;
+		} else {
+			rcolor = Color.black;
+		}
 
 		return rcolor;
-		
 	}
 	
 /*
@@ -207,14 +200,13 @@ public class Breakout extends GraphicsProgram {
 		 * get the paddle to sit at x coord 0 or x coord app width minus paddle width*/
 		if (gobj != null) {
 			if (paddle.getX() < 0) {
-				gobj.move( e.getX() - startX + (Math.abs(0 - paddle.getX())), 0);
+				gobj.move( e.getX() - startX + ( Math.abs(0 - paddle.getX()) ), 0 );
 			} else if (paddle.getX() > ( APPLICATION_WIDTH - PADDLE_WIDTH )) {
-				gobj.move( e.getX() - startX - (Math.abs( (APPLICATION_WIDTH - PADDLE_WIDTH) - paddle.getX())), 0);
+				gobj.move( e.getX() - startX - ( Math.abs( (APPLICATION_WIDTH - PADDLE_WIDTH) - paddle.getX()) ), 0 );
 			} else {
-				gobj.move( e.getX() - startX, 0);
+				gobj.move( e.getX() - startX, 0 );
 			} 
 		}
-		
 		/** Set values in startY/X to the current values for the next time the paddle is moved */
 		startX = e.getX();
 		startY = e.getY();
@@ -246,28 +238,28 @@ public class Breakout extends GraphicsProgram {
 			pause(PAUSE_TIME);
 			resovleCollisions();
 			
-				/** when the ball hits either the left or right edge of the app, reverse the x direction, continue on the 
-				 * same y direction. */
-				while (ball.getX() < LEFT_EDGE || ball.getX() > RIGHT_EDGE) {
-					vx = -vx;
-					ball.move(vx, vy);
-					pause(PAUSE_TIME);
-					resovleCollisions();
-				}
-				
-				/** when the ball hits the top, reverse the y direction, continue on the same x direction */
-				while (ball.getY() < TOP) {
-					vy = -vy;
-					ball.move(vx, vy);
-					pause(PAUSE_TIME);
-					resovleCollisions();
-				}
-				
-				/** when the ball hits the bottom or when no more bricks remain, terminate play */
-				if (ball.getY() >= BOTTOM || (bricksRemaining == 0)) {
-					break;
-				}
+			/** when the ball hits either the left or right edge of the app, reverse the x direction, continue on the 
+			 * same y direction. */
+			while (ball.getX() < LEFT_EDGE || ball.getX() > RIGHT_EDGE) {
+				vx = -vx;
+				ball.move(vx, vy);
+				pause(PAUSE_TIME);
+				resovleCollisions();
 			}
+			
+			/** when the ball hits the top, reverse the y direction, continue on the same x direction */
+			while (ball.getY() < TOP) {
+				vy = -vy;
+				ball.move(vx, vy);
+				pause(PAUSE_TIME);
+				resovleCollisions();
+			}
+			
+			/** when the ball hits the bottom or when no more bricks remain, terminate play */
+			if (ball.getY() >= BOTTOM || (bricksRemaining == 0)) {
+				break;
+			}
+		}
 	}
 
 /** Check for collisions */
