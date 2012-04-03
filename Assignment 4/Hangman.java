@@ -20,8 +20,6 @@ private static final int NUM_INCORRECT_GUESSES = 8; //per assignment instruction
 /** init added line for line from page 7 of http://see.stanford.edu/materials/icspmcs106a/27-assignment-4-hangman.pdf */
 /** "...Since this is a console program, the console is already installed and will therefore show up in the left column.  
     When you add the HangmanCanvas it will occupy the second column..." */
-
-//see if the problem is the HangmanCanvas class work is happening before Hangman is getting initialized.
 	public void init() {
 		canvas = new HangmanCanvas();
 		add(canvas);
@@ -29,6 +27,7 @@ private static final int NUM_INCORRECT_GUESSES = 8; //per assignment instruction
 
     public void run() {
     	hl = new HangmanLexicon(); //Per instructions
+    	
     	setup();
     	playGame();
 	}
@@ -46,7 +45,7 @@ private static final int NUM_INCORRECT_GUESSES = 8; //per assignment instruction
     	wordToGuess = hl.getWord(4);   //secretWord.getWord(rgen.nextInt(0, secretWord.getWordCount()));
     	numLettersRemaining = wordToGuess.length();
     	guessesRemaining = NUM_INCORRECT_GUESSES;
-    	playersWord = concatNCopies(wordToGuess.length(), "-"); //method takes whatever string you pass it and concatenates it for n times.
+    	playersWord = concatNCopies(wordToGuess.length(), "-");
     	wrongGuessList = "";
     	
     	/** while player has guesses, if letters remain, run through game's functions. otherwise guesses remain 
@@ -214,13 +213,17 @@ private static final int NUM_INCORRECT_GUESSES = 8; //per assignment instruction
     
 /** Instance variables for console portion of program */
     private HangmanLexicon hl;
-    private String wordToGuess;
     private String letterGuessed;
     private String playersWord;
     private String wrongGuessList;
-    private int guessesRemaining;
-    private int numLettersRemaining;
-    
 /** Instance variables for canvas portion of program */
     private HangmanCanvas canvas;
+    
+    
+/** Class variables */
+    private static String wordToGuess;
+    private static int guessesRemaining;
+    private static int numLettersRemaining;
+    
+
 }

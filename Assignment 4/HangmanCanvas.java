@@ -36,9 +36,9 @@ public class HangmanCanvas extends GCanvas {
 		bodyMidpointY = ropeStartingY + (HEAD_RADIUS * 2) + BODY_LENGTH;
 		nextBodyPart = 0;
 		
-		removeAll();
 		buildScaffold();
 		generateLabels();
+		
 	}
 
 /*
@@ -50,7 +50,7 @@ public class HangmanCanvas extends GCanvas {
  */
 	public void displayWord(String word, String wrongGuessList) {
 		
-		if (hang.getNumLettersRemaining() == 1) {
+		if (hang.getNumLettersRemaining() == 0) {
 			/* set the word at the bottom of the page to the secret word */
 			playerLabel.setLabel(word); 
 			playerLabel.setFont("Helvetica-20");
@@ -86,10 +86,10 @@ public class HangmanCanvas extends GCanvas {
 			youLose.setColor(Color.RED);
 			youLose.setLocation( (canvasXCenter - (youLose.getWidth() / 2)), getHeight() /2 );
 			
-			secretWordDisplay.setLabel("The word was: " + hang.getWordToGuess());
-			secretWordDisplay.setFont("Helvetica-20");
-			secretWordDisplay.setColor(Color.RED);
-			secretWordDisplay.setLocation( (canvasXCenter - (secretWordDisplay.getWidth() / 2)), getHeight() /1.75 );
+			secretWordForDisplay.setLabel("The word was: " + hang.getWordToGuess());
+			secretWordForDisplay.setFont("Helvetica-20");
+			secretWordForDisplay.setColor(Color.RED);
+			secretWordForDisplay.setLocation( (canvasXCenter - (secretWordForDisplay.getWidth() / 2)), getHeight() /1.75 );
 		}
 	}
 	
@@ -103,7 +103,7 @@ public class HangmanCanvas extends GCanvas {
 		int beamFinalX = ropeFinalX - BEAM_LENGTH;
 		int poleFinalY = ropeFinalY + SCAFFOLD_HEIGHT;
 		
-		/** build scaffold based on the rope's coordinates, which are at center on x-axis */
+		/** build scaffold based on the rope's coordinates, which are at center of canvas on x-axis */
 		GLine rope = new GLine(ropeStartingX, ropeStartingY, ropeFinalX, ropeFinalY);
 		add(rope);
 		
@@ -161,7 +161,7 @@ public class HangmanCanvas extends GCanvas {
 			default: throw new ErrorException("no more body parts");
 		}
 	}
-	
+
 	
 /*
  * Draws the head, which is a GOval.
@@ -195,21 +195,21 @@ public class HangmanCanvas extends GCanvas {
 		incorrectGuesses = new GLabel( "", getWidth() / 8, (getHeight() - (getHeight() / 20)) );
 		add(incorrectGuesses);
 		
-		youLose = new GLabel( "", getWidth() / 8, (getHeight() - (getHeight() / 20)) );
-		add(youLose);
-		
 		youWin = new GLabel( "", getWidth() / 8, (getHeight() - (getHeight() / 20)) );
 		add(youWin);
 		
-		secretWordDisplay = new GLabel( "", getWidth() / 8, (getHeight() - (getHeight() / 20)) );
-		add(secretWordDisplay);
+		youLose = new GLabel( "", getWidth() / 8, (getHeight() - (getHeight() / 20)) );
+		add(youLose);
+
+		secretWordForDisplay = new GLabel( "", getWidth() / 8, (getHeight() - (getHeight() / 20)) );
+		add(secretWordForDisplay);
 	}
 
 /*
  * ToString method, requirement from Lecture 9 for all non-program classes we write to have a toString() method
  */
 	public String toString() {
-		return "This class draws the hangman if the secret word is not guessed. The secret word this time is " + secretWordDisplay;
+		return "This class draws the hangman if the secret word is not guessed. The secret word this time is " + secretWordForDisplay;
 	}
 	
 
@@ -224,7 +224,7 @@ public class HangmanCanvas extends GCanvas {
 	private GLabel youLose;
 	private GLabel youWin;
 	private Hangman hang;
-	private GLabel secretWordDisplay;
+	private GLabel secretWordForDisplay;
 
 	
 }
