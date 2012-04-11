@@ -36,6 +36,7 @@ public class HangmanCanvas extends GCanvas {
 		bodyMidpointY = ropeStartingY + (HEAD_RADIUS * 2) + BODY_LENGTH;
 		nextBodyPart = 0;
 		
+		removeAll();
 		buildScaffold();
 		generateLabels();
 		
@@ -203,6 +204,9 @@ public class HangmanCanvas extends GCanvas {
 
 		secretWordForDisplay = new GLabel( "", getWidth() / 8, (getHeight() - (getHeight() / 20)) );
 		add(secretWordForDisplay);
+		
+		welcome = new GLabel( "", getWidth() / 2, getHeight() / 2 );
+		add(welcome);
 	}
 
 /*
@@ -225,6 +229,7 @@ public class HangmanCanvas extends GCanvas {
 	private GLabel youWin;
 	private Hangman hang;
 	private GLabel secretWordForDisplay;
+	private GLabel welcome;
 
 	
 }

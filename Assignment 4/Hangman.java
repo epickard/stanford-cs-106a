@@ -42,7 +42,7 @@ private static final int NUM_INCORRECT_GUESSES = 8; //per assignment instruction
  * player loses.
  */
     private void playGame() {
-    	wordToGuess = hl.getWord(4);   //secretWord.getWord(rgen.nextInt(0, secretWord.getWordCount()));
+    	wordToGuess = hl.getWord(rgen.nextInt(0, hl.getWordCount())); //getWord(4);
     	numLettersRemaining = wordToGuess.length();
     	guessesRemaining = NUM_INCORRECT_GUESSES;
     	playersWord = concatNCopies(wordToGuess.length(), "-");
