@@ -25,16 +25,35 @@ private static final int NUM_INCORRECT_GUESSES = 8; //per assignment instruction
 		add(canvas);
 	}
 
+/*
+ * executes the game. asks player if they would like to play & uppercase response. if yes, setup and play game. if no, exit.
+ * @see acm.program.ConsoleProgram#run()
+ */
     public void run() {
     	hl = new HangmanLexicon(); //Per instructions
     	
-    	setup();
-    	playGame();
+    	/** converts player's response to a char and plays game (or not) if indicated. else exits*/
+    	while (true) {
+    		String str = readLine("Play Game? y/n:");
+    		char confirmPlay = guessAsCharacter(str);
+    		confirmPlay = Character.toUpperCase(confirmPlay);
+    		if (confirmPlay == 'Y') {
+    	    	setup();
+		    	playGame();
+    		} else if (confirmPlay == 'N') {
+    			println("Thank you. Goodbye.");
+    			break;
+    		}
+    	}
 	}
-    
+ 
+/*
+ * displays welcome messaging and resets canvas to show only scaffold and dashes representing the letters in the word to guess
+ * at the beginning of each new game.
+ */
     private void setup() {
-    	canvas.reset();
     	println("Welcome to Hangman!");
+    	canvas.reset();
     }
     
 /*
@@ -68,7 +87,6 @@ private static final int NUM_INCORRECT_GUESSES = 8; //per assignment instruction
     		println("You're completely hung." + '\n' + "The word was: " + getWordToGuess() + '\n' + "You lose.");
     	}
     }
-  
     
 /*
  * Prints player's word in its current form, both to the console and the display.
@@ -88,7 +106,6 @@ private static final int NUM_INCORRECT_GUESSES = 8; //per assignment instruction
     		println("You have only one guess left.");
     	}
     }
-    
     
 /*
  * Determines validity of player's guess. Guess must be only one letter. No numbers or special characters allowed.   
@@ -140,8 +157,7 @@ private static final int NUM_INCORRECT_GUESSES = 8; //per assignment instruction
     		return playersWord;
     	}
     }
-    
-    
+      
 /*
  * Concatenates specified number of copies of specified string. Taken directly from Art & Sci of Java, eroberts, page 242.
  * 
@@ -158,7 +174,7 @@ private static final int NUM_INCORRECT_GUESSES = 8; //per assignment instruction
  /*
   * Confirms player's guess is no longer than 1 character
   * 
-  * @param str	guess inputted by the user
+  * @param str	guess input by the user
   * 
   * @return	true if guess contains only one character, false if more than one character OR if no character entered.
   */
@@ -204,7 +220,8 @@ private static final int NUM_INCORRECT_GUESSES = 8; //per assignment instruction
     public int getNumLettersRemaining() {
     	return numLettersRemaining;
         }    
-    
+
+   
 /*
  * Instance of RandomGenerator to randomly pick a word from HangmanLexicon
  */
@@ -216,6 +233,7 @@ private static final int NUM_INCORRECT_GUESSES = 8; //per assignment instruction
     private String letterGuessed;
     private String playersWord;
     private String wrongGuessList;
+
 /** Instance variables for canvas portion of program */
     private HangmanCanvas canvas;
     
@@ -224,6 +242,5 @@ private static final int NUM_INCORRECT_GUESSES = 8; //per assignment instruction
     private static String wordToGuess;
     private static int guessesRemaining;
     private static int numLettersRemaining;
-    
 
 }

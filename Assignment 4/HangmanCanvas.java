@@ -39,7 +39,6 @@ public class HangmanCanvas extends GCanvas {
 		removeAll();
 		buildScaffold();
 		generateLabels();
-		
 	}
 
 /*
@@ -52,15 +51,21 @@ public class HangmanCanvas extends GCanvas {
 	public void displayWord(String word, String wrongGuessList) {
 		
 		if (hang.getNumLettersRemaining() == 0) {
-			/* set the word at the bottom of the page to the secret word */
+			/* set the word at the bottom of the canvas to the secret word */
 			playerLabel.setLabel(word); 
 			playerLabel.setFont("Helvetica-20");
-			
 			/* tell the player they've won */
 			youWin.setLabel("Congratulations! You Win!");
 			youWin.setFont("Helvetica-20");
 			youWin.setColor(Color.GREEN);
 			youWin.setLocation( (canvasXCenter - (youWin.getWidth() / 2)), getHeight() /2 );
+			/* ask player if they want to play again */
+			playAgain.setLabel("Play again? y/n");
+			playAgain.setFont("Helvetica-20");
+			playAgain.setColor(Color.GREEN);
+			playAgain.setLocation((canvasXCenter - (playAgain.getWidth() / 2)), (getHeight() /2 + 50) );
+			
+			
 		} else {
 			playerLabel.setLabel(word);
 			playerLabel.setFont("Helvetica-20");
@@ -82,7 +87,7 @@ public class HangmanCanvas extends GCanvas {
 		
 		/* When the last body part is drawn, indicate player has lost */
 		if (nextBodyPart == 8) {
-			youLose.setLabel("Sorry! You Lose! Please Play Again!");
+			youLose.setLabel("Sorry! You Lose! Play Again? y/n");
 			youLose.setFont("Helvetica-20");
 			youLose.setColor(Color.RED);
 			youLose.setLocation( (canvasXCenter - (youLose.getWidth() / 2)), getHeight() /2 );
@@ -114,7 +119,6 @@ public class HangmanCanvas extends GCanvas {
 		GLine pole = new GLine(beamFinalX, ropeFinalY, beamFinalX, poleFinalY );
 		add(pole);
 	}
-	
 	
 /*
  * Adds the next body part to the scaffold when player guesses incorrectly. 
@@ -162,7 +166,6 @@ public class HangmanCanvas extends GCanvas {
 			default: throw new ErrorException("no more body parts");
 		}
 	}
-
 	
 /*
  * Draws the head, which is a GOval.
@@ -171,7 +174,6 @@ public class HangmanCanvas extends GCanvas {
 		GOval head = new GOval( (canvasXCenter - HEAD_RADIUS), ropeStartingY, HEAD_RADIUS * 2, HEAD_RADIUS * 2 );
 		add(head);
 	}
-	
 
 /*
  * Draws the non-head body parts, which are all GLines
@@ -205,8 +207,8 @@ public class HangmanCanvas extends GCanvas {
 		secretWordForDisplay = new GLabel( "", getWidth() / 8, (getHeight() - (getHeight() / 20)) );
 		add(secretWordForDisplay);
 		
-		welcome = new GLabel( "", getWidth() / 2, getHeight() / 2 );
-		add(welcome);
+		playAgain = new GLabel( "", getWidth() / 2, getHeight() / 2 );
+		add(playAgain);
 	}
 
 /*
@@ -229,7 +231,6 @@ public class HangmanCanvas extends GCanvas {
 	private GLabel youWin;
 	private Hangman hang;
 	private GLabel secretWordForDisplay;
-	private GLabel welcome;
-
+	private GLabel playAgain;
 	
 }
