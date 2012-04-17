@@ -55,6 +55,8 @@ public class HangmanLexicon {
  * @return wordFromLexicon  Pseudorandomly-chosen word (from the lexicon file).
  */
 	public String getWord() {
+		String wordFromLexicon;
+		
 		return wordFromLexicon = strList.get(rgen.nextInt(0, getWordCount() ));
 	}
 
@@ -69,8 +71,5 @@ public class HangmanLexicon {
  * Instance of RandomGenerator to randomly pick a word (from the lexicon file).
  */
 	private RandomGenerator rgen = new RandomGenerator();
-
-/** Class Variables */
-public static String wordFromLexicon;	
 
 }
