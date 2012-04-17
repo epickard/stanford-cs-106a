@@ -56,6 +56,7 @@ private static final int NUM_INCORRECT_GUESSES = 8; //per assignment instruction
  * player loses.
  */
     private void playGame() {
+    	/** initialize variables needed for play */
     	wordToGuess = hl.getWord();
     	numLettersRemaining = wordToGuess.length();
     	guessesRemaining = NUM_INCORRECT_GUESSES;
