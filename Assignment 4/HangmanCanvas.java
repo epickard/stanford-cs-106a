@@ -42,8 +42,7 @@ public class HangmanCanvas extends GCanvas {
 	}
 
 /*
- * Updates the word on the screen to correspond to the current state of the game.  The argument string shows what letters have
- * been guessed so far; unguessed letters are indicated by hyphens.
+ * Updates the word on the canvas to correspond to the current state of the game. 
  * 
  * @param word	The player's word
  * @param wrongGuessList	List of incorrectly-guessed letters

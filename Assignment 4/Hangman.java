@@ -5,12 +5,7 @@
  * Assignment #4.
  */
 
-import acm.graphics.*;
 import acm.program.*;
-import acm.util.*;
-
-import java.awt.*;
-import java.io.*;
 
 public class Hangman extends ConsoleProgram {
 	
@@ -26,7 +21,7 @@ private static final int NUM_INCORRECT_GUESSES = 8; //per assignment instruction
 	}
 
 /*
- * executes the game. asks player if they would like to play & uppercase response. if yes, setup and play game. if no, exit.
+ * executes the game. asks player if they would like to play & upper-case response. if yes, setup and play game. if no, exit.
  * @see acm.program.ConsoleProgram#run()
  */
     public void run() {
